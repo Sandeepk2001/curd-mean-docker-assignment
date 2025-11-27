@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  # 1. Database Service (MongoDB)
+  mongo:
+    image: mongo:latest
+    container_name: mean_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  # 2. Backend Service (Node/Express)
+  backend:
+    build: ./backend
+    container_name: mean_backend
+    ports:
+      - "8081:8080"  # This is the correct port for your setup
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/crud-db
+    depends_on:
+      - mongo
+
+  # 3. Frontend Service (Angular)
+  frontend:
+    build: ./frontend
+    container_name: mean_frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+
+volumes:
+  mongo-data:
