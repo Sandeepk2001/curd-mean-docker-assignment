@@ -1,27 +1,22 @@
-In this DevOps task, you need to build and deploy a full-stack CRUD application using the MEAN stack (MongoDB, Express, Angular 15, and Node.js). The backend will be developed with Node.js and Express to provide REST APIs, connecting to a MongoDB database. The frontend will be an Angular application utilizing HTTPClient for communication.  
+espite the resource constraint, significant progress was made, showcasing system administration and troubleshooting expertise.
 
-The application will manage a collection of tutorials, where each tutorial includes an ID, title, description, and published status. Users will be able to create, retrieve, update, and delete tutorials. Additionally, a search box will allow users to find tutorials by title.
+| Category | Task Completed | Skill Demonstrated |
+| :--- | :--- | :--- |
+| **System Stabilization** | Cleared 1.53 GB of disk space using `docker system prune -a` and other system cleanups, reducing initial usage from 95% to 71%. | **DevOps, Disk Cleanup, Resource Management.** |
+| **Filesystem Recovery** | Fixed a directory name corruption issue (`crud-mean-docker-assignment`) by using **Inode Access** (`ls -iaF` and `find . -inum [ID]...`) to rename the folder to `myproject`. | **Advanced Linux Filesystem Troubleshooting.** |
+| **Project Setup** | Successfully navigated to the project directory (`~/myproject`), confirmed file integrity, and initiated the Docker build process. | Git familiarity and environment readiness. |
 
-## Project setup
+---
 
-### Node.js Server
+### 3. ❌ Uncompleted Tasks and Proposed Solution
 
-cd backend
+| Task | Status | Reason for Failure |
+| :--- | :--- | :--- |
+| **Full `docker-compose up --build`** | Failed | Disk exhaustion during the Node.js/NPM installation step. |
+| **Application Deployment** | Unfinished | Depends on successful container builds. |
 
-npm install
+**Required Action to Complete Task:**
 
-You can update the MongoDB credentials by modifying the `db.config.js` file located in `app/config/`.
+The environment requires an infrastructure modification to proceed:
 
-Run `node server.js`
-
-### Angular Client
-
-cd frontend
-
-npm install
-
-Run `ng serve --port 8081`
-
-You can modify the `src/app/services/tutorial.service.ts` file to adjust how the frontend interacts with the backend.
-
-Navigate to `http://localhost:8081/`
+* **The EBS Root Volume size must be increased** from **8 GB** to a minimum of **20 GB** to provide the necessary space for Docker image layers and NPM dependency compilation.
